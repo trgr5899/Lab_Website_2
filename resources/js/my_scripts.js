@@ -115,17 +115,12 @@ function loadStatsPage()
 		}
 function loadPlayersPage()
 {
-	var i;
-	for(i=0;i<4;i++)
+	var i=document.getElementById("player_selector")
+	for (var j=0;j<players.length;j++)
 	{
-		var mydiv = document.getElementById("player_selector");
-		var aTag = document.createElement('a');
-		aTag.setAttribute('href',"#");
-		aTag.innerText = players[i].name;
-		aTag.onlick=switchPlayers(i);
-		mydiv.appendChild(aTag);
+		var change= "<a href='#' onclick = ' switchPlayers(\""+players[j].name+"\")'>"+players[j].name + "</a> <br>";
+		i.innerHTML +=change;
 	}
-	mydiv.appendChild(aTag);
 
 
 
@@ -155,13 +150,23 @@ function loadPlayersPage()
 */
 					function switchPlayers(playerNum)
 					{
-						document.getElementById("p_year").innerHTML=players[playerNum].year;
-						document.getElementById("p_major").innerHTML=players[playerNum].major;
-						document.getElementById("g_played").innerHTML=players[playerNum].games_played;
-						document.getElementById("player_img").innerHTML=players[playerNum].img;
-						document.getElementById("p_yards").innerHTML=players[playerNum].pass_yards;
-						document.getElementById("r_yards").innerHTML=players[playerNum].rushing_yards;
-						document.getElementById("rec_yards").innerHTML=players[playerNum].receiving_yards;
+						for(var i=0;i<players.length;i++)
+						{
+
+								if(players[i].name == playerNum )
+								{
+								document.getElementById("p_year").innerHTML=players[i].year;
+								document.getElementById("p_major").innerHTML=players[i].major;
+								document.getElementById("g_played").innerHTML=players[i].games_played;
+								document.getElementById("player_img").src=players[i].img;
+								document.getElementById("p_yards").innerHTML=players[i].pass_yards;
+								document.getElementById("r_yards").innerHTML=players[i].rushing_yards;
+								document.getElementById("rec_yards").innerHTML=players[i].receiving_yards;
+								document.getElementById("avg_p_yards").innerHTML=(players[i].pass_yards/players[i].games_played);
+								document.getElementById("avg_r_yards").innerHTML=(players[i].rushing_yards/players[i].games_played);
+								document.getElementById("avg_rec_yards").innerHTML=(players[i].receiving_yards/players[i].games_played);
+							}
+					}
 
 
 					}
